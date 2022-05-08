@@ -8,7 +8,6 @@
 using namespace std;
 
 // uso un NodoLista generico
-
 typedef ListImplementation<GraphEdge> *EdgeList;
 
 class GrafoListaAdyImp : public Graph<EdgeList>
@@ -42,20 +41,16 @@ public:
     // O(1)
     void addEdge(int v, int w, int peso = 1)
     {
-        // cout << "Se Crea Edge" << endl;
-
         int pesoArista = this->esPonderado ? peso : 1; // en el caso de ser ponderado se toma en cuenta el parametro
         GraphEdge a1(v, w, pesoArista);
-        // cout << "Se Crea Edge" << endl;
 
         if(listaAdy[v] == NULL){
             listaAdy[v] = new ListImplementation<GraphEdge>();
         }
         listaAdy[v]->insertInHead(a1); // se agrega al ppio de la lista de los adyacentes al veritce v
-        // cout << "Se insertó edge" << endl;
 
         this->A++;
-        if (!esDirigido)                                      // en caso de no ser dirigido podemos duplicar la arista hacia el otro sentido w->v
+        if (!esDirigido)               // en caso de no ser dirigido podemos duplicar la arista hacia el otro sentido w->v
         {
             GraphEdge a2(w, v, pesoArista);
             listaAdy[w]->insertInHead(a2);
@@ -70,8 +65,6 @@ public:
         EdgeList listaAuxiliar = listaAdy[origen];
 
         int listSize = listaAuxiliar->getSize();
-        // cout << "Largo de la lista de adyacentes " << listSize << endl;
-
 
         Iterator<GraphEdge> *iterator = listaAuxiliar->getIterator();
 
