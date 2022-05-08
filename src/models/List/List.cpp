@@ -118,7 +118,7 @@ public:
         ListNode *current = head;
         ListNode *previus = NULL;
 
-        if (current != NULL && current->element == elementToDelete)
+        if (current != NULL && current->element.Equal(elementToDelete))
         {
             head = current->next;
             delete current;
@@ -126,7 +126,7 @@ public:
         }
         else
         {
-            while (current != NULL && current->element != elementToDelete)
+            while (current != NULL && !current->element.Equal(elementToDelete))
             {
                 previus = current;
                 current = current->next;

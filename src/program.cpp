@@ -10,12 +10,10 @@ int main()
 {
     cout << "Prueba de grafo dirigido y no ponderado:" << endl;
     GrafoListaAdyImp *gDirNoPon = new GrafoListaAdyImp(10, true, false);
-    cout << "Prueba de grafo dirigido y no ponderado:" << endl;
 
     gDirNoPon->addEdge(1, 3);
     gDirNoPon->addEdge(1, 2);
     gDirNoPon->addEdge(4, 1);
-    cout << "Prueba de grafo dirigido y no ponderado:" << endl;
 
     gDirNoPon->print();
 

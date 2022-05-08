@@ -4,20 +4,19 @@
 #include "Edge.cpp"
 #include "../List/List.cpp"
 #include "Graph.h"
-// #include "../helpers/Iterator.h"
 
 using namespace std;
 
 // uso un NodoLista generico
 
-typedef ListImplementation<GraphEdge> EdgeList;
+typedef ListImplementation<GraphEdge> *EdgeList;
 
 class GrafoListaAdyImp : public Graph<EdgeList>
 {
 private:
     EdgeList *listaAdy; // representacion del grafo con listas
-    int V;                  // cantidad de vertices
-    int A;                  // cantidad de arsitas
+    int V;              // cantidad de vertices
+    int A;              // cantidad de arsitas
 
     bool esDirigido;  // indica si el grafo es dirigido
     bool esPonderado; // indica si el grafo es ponderado
@@ -43,17 +42,17 @@ public:
     // O(1)
     void addEdge(int v, int w, int peso = 1)
     {
-        cout << "Se Crea Edge" << endl;
+        // cout << "Se Crea Edge" << endl;
 
         int pesoArista = this->esPonderado ? peso : 1; // en el caso de ser ponderado se toma en cuenta el parametro
         GraphEdge a1(v, w, pesoArista);
-        cout << "Se Crea Edge" << endl;
+        // cout << "Se Crea Edge" << endl;
 
         if(listaAdy[v] == NULL){
             listaAdy[v] = new ListImplementation<GraphEdge>();
         }
         listaAdy[v]->insertInHead(a1); // se agrega al ppio de la lista de los adyacentes al veritce v
-        cout << "Se insertó edge" << endl;
+        // cout << "Se insertó edge" << endl;
 
         this->A++;
         if (!esDirigido)                                      // en caso de no ser dirigido podemos duplicar la arista hacia el otro sentido w->v
@@ -67,15 +66,19 @@ public:
     EdgeList adjecentsTo(int origen)
     {
         // copio la lista
-        EdgeList listaRetorno = NULL;
+        EdgeList listaRetorno = new ListImplementation<GraphEdge>();
         EdgeList listaAuxiliar = listaAdy[origen];
+
+        int listSize = listaAuxiliar->getSize();
+        // cout << "Largo de la lista de adyacentes " << listSize << endl;
+
 
         Iterator<GraphEdge> *iterator = listaAuxiliar->getIterator();
 
         while (iterator->hasNext())
         {
             GraphEdge aristaAuxiliar = iterator->next();
-            listaRetorno ->insertInHead(aristaAuxiliar);
+            listaRetorno->insertInHead(aristaAuxiliar);
         }
 
         return listaRetorno;
