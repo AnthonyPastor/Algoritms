@@ -10,7 +10,7 @@ using namespace std;
 
 // uso un NodoLista generico
 
-typedef ListImplementation<GraphEdge> *EdgeList;
+typedef ListImplementation<GraphEdge> EdgeList;
 
 class GrafoListaAdyImp : public Graph<EdgeList>
 {
