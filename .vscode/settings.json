@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+      "xutility": "cpp",
+      "istream": "cpp",
+      "tuple": "cpp",
+      "iostream": "cpp"
+    }
+  }
